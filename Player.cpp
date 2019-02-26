@@ -29,13 +29,9 @@ void Player::initialize()
 	m_result = std::make_shared<TextNode>("", 34u, 36.f, 5.2f, sf::Color::White, Filename::font);
 	m_hudScore = std::make_shared<TextNode>("", 36u, 1.25f, 1.13f, sf::Color(51, 173, 255), Filename::font);
 	m_hudHealth = std::make_shared<TextNode>("", 36u, 45.f, 1.13f, sf::Color(51, 173, 255), Filename::font);
+	m_gameOver = std::make_shared<TextNode>(GAMEOVER, 17u, 34.f, 4.8f, sf::Color(51, 173, 255), Filename::font);
 
 	m_sprite->setPosition((float)Screen::screenWidth / 2.f, (float)Screen::screenHeight / 2.f); 
-}
- 
-void Player::drawResult()
-{
-	Screen::window.draw(*m_result);
 }
 
 void Player::resetScore()
@@ -44,9 +40,19 @@ void Player::resetScore()
 	m_health = 100;
 }
 
+void Player::drawResult()
+{
+	Screen::window.draw(*m_result);
+}
+
+void Player::drawGameOver()
+{
+	Screen::window.draw(*m_gameOver);
+}
+
 bool Player::win()
 {
-	return m_score == 3;
+	return m_score >= 20;
 }
 
 bool Player::lose()

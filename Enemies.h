@@ -22,6 +22,7 @@ public:
 	void collideWithPlayer(Player& player);
 	void dir(Player& player);
 	void destroyEnemy();
+	void clearEnemies();
 
 	virtual void draw();
 	virtual void initialize();

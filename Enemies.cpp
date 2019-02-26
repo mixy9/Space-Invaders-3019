@@ -11,11 +11,16 @@ void Enemies::initialize()
 {   
 	m_texture.load(Resource::Textures, Filename::explosion);
 	m_rectSprite = (sf::IntRect(0, 0, 128, 128)); 
-	if (m_alive == false)
+	/*if (m_alive == false)
 	{
 		m_explosion.setTexture(*m_texture.get(Filename::explosion));
 		m_explosion.setTextureRect(m_rectSprite);
-	}
+	}*/
+}
+
+void Enemies::clearEnemies()
+{
+	m_enemies.clear();
 }
 
 void Enemies::draw()

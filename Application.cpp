@@ -57,25 +57,24 @@ void Application::update()
 		projectile.update(delta);
 		projectile.deleteProjectiles();
 		projectile.collisionWithEnemy(enemies, player);
-
-		//enemies.dir(player);
+		 
 		enemies.update(delta);
 		enemies.collideWithPlayer(player); 
 
-		/*if (player.win())
+		if (player.win())
 		{
 			gameState = GameState::END;
 		}
 		if (player.lose())
 		{
-			gameState = GameState::END;
-		}*/
+			gameState = GameState::GAME_OVER;
+		}
 	}
-	else if (gameState == GameState::END)
+	else if (gameState == GameState::END || gameState == GameState::GAME_OVER)
 	{
 		SoundManager::getInstance()->stopMusic();
 		clock.restart();
-		player.update(delta); 
+		enemies.clearEnemies();
 	}
 }
 
@@ -95,6 +94,10 @@ void Application::display()
 	case GameState::END:
 		gameDesign.drawEnd();
 		player.drawResult();
+		break;
+	case GameState::GAME_OVER:
+		gameDesign.drawEnd(); 
+		player.drawGameOver();
 		break;
 	}
 }
@@ -121,11 +124,11 @@ void Application::processEvents()
 				gameState = GameState::PLAYING;
 				player.resetScore();
 			}
-			if (gameState == GameState::END)
+			if (gameState == GameState::END || gameState == GameState::GAME_OVER)
 			{ 
 				if (Event.key.code == sf::Keyboard::Up)
 				{
-					gameDesign.moveUp();
+					gameDesign.moveUp(); 
 				}
 				else if (Event.key.code == sf::Keyboard::Down)
 				{

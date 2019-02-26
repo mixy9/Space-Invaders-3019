@@ -9,7 +9,7 @@
 
 
 #define PROJECTILE_TIMER 10
-#define ENEMY_TIMER 60
+#define ENEMY_TIMER 40
 #define ENEMY_HEALTH 3
 #define PLAYER_HEALTH 100 
 #define ENEMY_SPEED 2.f 

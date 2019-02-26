@@ -12,7 +12,7 @@ class Player : public GameObject
 {
 protected:
 	std::unique_ptr<SpriteNode> m_sprite, m_crosshair;
-	sPtr<TextNode> m_hudScore, m_hudHealth, m_result, m_star;
+	sPtr<TextNode> m_hudScore, m_hudHealth, m_result, m_gameOver;
 	sf::Int32 m_updateTime;
 	sf::Clock m_clock;
 
@@ -29,8 +29,9 @@ public:
 	sf::Vector2f playerCenter();
 	sf::Sprite& setSprite();
 	 
-	void drawResult();
 	void resetScore();
+	void drawResult();
+	void drawGameOver();
 
 	bool win();
 	bool lose();
